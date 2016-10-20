@@ -1,0 +1,29 @@
+{
+  "name": "react-deploy-s3",
+  "version": "0.0.1",
+  "description": "Deploy create react apps in AWS S3",
+  "main": "src/index.js",
+  "preferGlobal": true,
+  "repository": {
+    "url": "https://github.com/nicolaslopezj/react-deploy-s3",
+    "type": "git"
+  },
+  "bin": {
+    "react-deploy-s3": "src/index.js"
+  },
+  "author": "Nicolás López <nicolaslopezj@me.com>",
+  "license": "MIT",
+  "dependencies": {
+    "aws-sdk": "^2.6.10",
+    "babel-cli": "^6.16.0",
+    "babel-plugin-syntax-async-functions": "^6.13.0",
+    "babel-plugin-transform-regenerator": "^6.16.1",
+    "babel-polyfill": "^6.16.0",
+    "babel-preset-es2015": "^6.16.0",
+    "child-process-promise": "^2.1.3",
+    "commander": "^2.9.0"
+  },
+  "standard": {
+    "parser": "babel-eslint"
+  }
+}
