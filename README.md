@@ -10,6 +10,13 @@ Deploy create react app's in AWS S3
 yarn add --dev react-deploy-s3
 ```
 
+or
+
+```sh
+npm install --save-dev react-deploy-s3
+```
+
+
 ### Deploy your app
 
 Usage: ```react-deploy-s3 [options]```
