@@ -16,6 +16,28 @@ or
 npm install --save-dev react-deploy-s3
 ```
 
+### Attach policy to user in AWS
+
+IAM Management Console **>** Users **>** [The user you will use] **>** Inline Policies **>** Create User Policy **>** Custom Policy 
+
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "Stmt1442501159000",
+            "Effect": "Allow",
+            "Action": [
+                "s3:*"
+            ],
+            "Resource": [
+                "arn:aws:s3:::[bucket-name]/*",
+                "arn:aws:s3:::[bucket-name]"
+            ]
+        }
+    ]
+}
+```
 
 ### Deploy your app
 
