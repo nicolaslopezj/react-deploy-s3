@@ -10,8 +10,12 @@ import build from './build'
 
 export default async ({ accessKeyId, secretAccessKey, bucket, region }) => {
   await build()
+  AWS.config.update({
+    accessKeyId,
+    secretAccessKey,
+    region
+  })
 
-  AWS.config.update({AccessKeyId: accessKeyId, SecretAccessKey: secretAccessKey})
   const s3 = new AWS.S3()
   await clean({ s3, bucket })
 

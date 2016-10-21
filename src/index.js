@@ -1,4 +1,4 @@
-#!/usr/bin/env babel-node --presets=es2015 --plugins=syntax-async-functions,transform-regenerator
+#!/usr/bin/env node
 
 import program from 'commander'
 import upload from './upload'
@@ -28,7 +28,7 @@ const safeDeploy = async () => {
   try {
     console.log('\n' + clc.blue.underline('React deploy S3') + '\n')
     await upload({
-      accessKeyId: program.secretAccessKey,
+      accessKeyId: program.accessKeyId,
       secretAccessKey: program.secretAccessKey,
       bucket: program.bucket,
       region: program.region
@@ -36,6 +36,7 @@ const safeDeploy = async () => {
     console.log(clc.bold(`App deployed at "${program.bucket}"`))
   } catch (error) {
     console.log('Error deploying:', error, error.stack)
+    process.exit(1)
   }
 }
 
