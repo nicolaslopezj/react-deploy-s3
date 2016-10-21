@@ -1,8 +1,8 @@
 #!/usr/bin/env babel-node --presets=es2015 --plugins=syntax-async-functions,transform-regenerator
 
 import program from 'commander'
-import {exec} from 'child-process-promise'
 import upload from './upload'
+import clc from 'cli-color'
 
 program
 .version('0.0.1')
@@ -24,25 +24,18 @@ if (!program.bucket) {
   throw new Error('bucket is required')
 }
 
-const deploy = async () => {
-  console.log('Builing app...')
-  // await exec('npm run build')
-  console.log('App built')
-  console.log(`Uploading to bucket ${program.bucket}...`)
-  await upload({
-    accessKeyId: program.secretAccessKey,
-    secretAccessKey: program.secretAccessKey,
-    bucket: program.bucket,
-    region: program.region
-  })
-  console.log('App uploaded')
-}
-
 const safeDeploy = async () => {
   try {
-    await deploy()
-  } catch (e) {
-    console.log('Error deploying:', e)
+    console.log('\n' + clc.blue.underline('React deploy S3') + '\n')
+    await upload({
+      accessKeyId: program.secretAccessKey,
+      secretAccessKey: program.secretAccessKey,
+      bucket: program.bucket,
+      region: program.region
+    })
+    console.log(clc.bold(`App deployed at "${program.bucket}"`))
+  } catch (error) {
+    console.log('Error deploying:', error, error.stack)
   }
 }
 

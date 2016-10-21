@@ -1,11 +1,17 @@
+import {Spinner} from 'cli-spinner'
+import clc from 'cli-color'
 
 export default async ({ s3, bucket }) => {
-  console.log('Removing old files')
+  let spinner = new Spinner('%s Removing old files...')
+  spinner.setSpinnerString('⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏')
+  spinner.start()
+
   const listResult = await s3.listObjects({Bucket: bucket}).promise()
   if (listResult.Contents.length === 0) {
+    spinner.stop(true)
     return console.log('No files to delete')
   }
-  return await s3.deleteObjects({
+  await s3.deleteObjects({
     Bucket: bucket,
     Delete: {
       Objects: listResult.Contents.map(file => {
@@ -13,4 +19,8 @@ export default async ({ s3, bucket }) => {
       })
     }
   }).promise()
+
+  spinner.stop(true)
+
+  console.log(clc.bold('Old files deleted'))
 }
