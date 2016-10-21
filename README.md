@@ -25,8 +25,4 @@ Usage: ```react-deploy-s3 [options]```
 
 ### Prepare your S3 bucket
 
-Set static website hosting
-
-<p align="center">
-  <img src="http://i.imgur.com/0PSxUvs.png"/>
-</p>
+![setup-s3](http://i.imgur.com/0PSxUvs.png)
