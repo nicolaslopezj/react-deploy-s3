@@ -27,4 +27,6 @@ Usage: ```react-deploy-s3 [options]```
 
 Set static website hosting
 
-![setup-s3](http://i.imgur.com/0PSxUvs.png)
+<p align="center">
+  <img src="http://i.imgur.com/0PSxUvs.png"/>
+</p>
