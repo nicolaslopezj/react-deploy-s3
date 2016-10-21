@@ -26,3 +26,7 @@ Usage: ```react-deploy-s3 [options]```
 ### Prepare your S3 bucket
 
 ![setup-s3](http://i.imgur.com/0PSxUvs.png)
+
+### SEO
+
+You can add seo to this app by using [s3-static-proxy](https://github.com/nicolaslopezj/s3-static-proxy).
