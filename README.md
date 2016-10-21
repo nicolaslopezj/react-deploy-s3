@@ -7,7 +7,7 @@ Deploy create react app's in AWS S3
 ### Install the tool
 
 ```sh
-npm install -g react-deploy-s3
+yarn add --dev react-deploy-s3
 ```
 
 ### Deploy your app
