@@ -18,7 +18,7 @@ npm install --save-dev react-deploy-s3
 
 ### Attach policy to user in AWS
 
-IAM Management Console **>** Users **>** [The user you will use] **>** Inline Policies **>** Create User Policy **>** Custom Policy 
+IAM Management Console **>** Users **>** [The user you will use] **>** Inline Policies **>** Create User Policy **>** Custom Policy
 
 ```json
 {
@@ -51,6 +51,7 @@ Usage: ```react-deploy-s3 [options]```
 - ```--secret-access-key [secretKey]``` AWS secret access key
 - ```--bucket [bucket]``` Name of the bucket
 - ```--region [region]``` Region of the bucket [us-east-1]
+- ```--distribution-id [distribution-id]``` The id of the CloudFront distribution to invalidate the index.html file.
 
 ### Prepare your S3 bucket
 
