@@ -3,6 +3,7 @@
 import program from 'commander'
 import upload from './upload'
 import clc from 'cli-color'
+import invalidate from './invalidate'
 
 program
 .version('0.0.1')
@@ -10,6 +11,7 @@ program
 .option('-s, --secret-access-key [secretKey]', 'AWS secret access key')
 .option('-b, --bucket [bucket]', 'Name of the bucket')
 .option('-r, --region [region]', 'Region of the bucket [us-east-1]', 'us-east-1')
+.option('-r, --distribution-id [distribution-id]', 'Cloudfront distrubution to invalidate index.html')
 .parse(process.argv)
 
 if (!program.accessKeyId) {
@@ -34,6 +36,15 @@ const safeDeploy = async () => {
       region: program.region
     })
     console.log(clc.bold(`App deployed at "${program.bucket}"`))
+
+    if (program.distributionId) {
+      await invalidate({
+        accessKeyId: program.accessKeyId,
+        secretAccessKey: program.secretAccessKey,
+        distributionId: program.distributionId
+      })
+      console.log(clc.bold(`Invalidation created`))
+    }
   } catch (error) {
     console.log('Error deploying:', error, error.stack)
     process.exit(1)
