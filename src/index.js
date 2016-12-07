@@ -11,7 +11,7 @@ program
 .option('-s, --secret-access-key [secretKey]', 'AWS secret access key')
 .option('-b, --bucket [bucket]', 'Name of the bucket')
 .option('-r, --region [region]', 'Region of the bucket [us-east-1]', 'us-east-1')
-.option('-r, --distribution-id [distribution-id]', 'Cloudfront distrubution to invalidate index.html')
+.option('-d, --distribution-id [distribution-id]', 'Cloudfront distrubution to invalidate index.html')
 .parse(process.argv)
 
 if (!program.accessKeyId) {
