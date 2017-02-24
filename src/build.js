@@ -3,7 +3,7 @@ import clc from 'cli-color'
 import {exec} from 'child-process-promise'
 
 export default async () => {
-  let spinner = new Spinner('%s Builing app...')
+  let spinner = new Spinner('%s Building app...')
   spinner.setSpinnerString('⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏')
   spinner.start()
 
