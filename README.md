@@ -2,6 +2,8 @@
 
 Deploy create react app's in AWS S3
 
+[[https://github.com/orionsoft/react-deploy-s3/blob/master/demo.gif]]
+
 ## Instructions
 
 ### Install the tool
