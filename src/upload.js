@@ -3,7 +3,6 @@ import clean from './clean'
 import mime from 'mime'
 import fs from 'fs'
 import getFiles from './getFiles'
-import s3Upload from './s3Upload'
 import filesize from 'filesize'
 import {Spinner} from 'cli-spinner'
 import build from './build'
@@ -33,13 +32,13 @@ export default async ({ accessKeyId, secretAccessKey, bucket, region }) => {
     const size = filesize(stats.size)
     spinner.setSpinnerTitle(`%s   Uploading ${fileName} (${size})...`)
 
-    await s3Upload(s3, {
+    await s3.upload(s3, {
       Bucket: bucket,
       Key: fileName,
       Body: stream,
       ACL: 'public-read',
       ContentType: contentType
-    })
+    }).promise()
   }
   spinner.stop(true)
 }
