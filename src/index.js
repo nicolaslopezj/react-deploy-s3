@@ -24,7 +24,7 @@ program
 .option('-b, --bucket [bucket]', 'Name of the bucket')
 .option('-r, --region [region]', 'Region of the bucket [us-east-1]', 'us-east-1')
 .option('-d, --distribution-id [distribution-id]', 'Cloudfront distrubution to invalidate index.html')
-.action(function (cmd, options) {
+.action(async function (cmd, options) {
   if (!cmd.accessKeyId) {
     throw new Error('access-key-id is required')
   }
@@ -37,32 +37,29 @@ program
     throw new Error('bucket is required')
   }
 
-  const safeDeploy = async () => {
-    try {
-      console.log('\n' + clc.blue.underline('React deploy S3') + '\n')
-      await upload({
+  try {
+    console.log('\n' + clc.blue.underline('React deploy S3') + '\n')
+    await upload({
+      accessKeyId: cmd.accessKeyId,
+      secretAccessKey: cmd.secretAccessKey,
+      bucket: cmd.bucket,
+      region: cmd.region
+    })
+    console.log(clc.bold(`App deployed at "${cmd.bucket}"`))
+
+    if (cmd.distributionId) {
+      await invalidate({
         accessKeyId: cmd.accessKeyId,
         secretAccessKey: cmd.secretAccessKey,
-        bucket: cmd.bucket,
-        region: cmd.region
+        distributionId: cmd.distributionId
       })
-      console.log(clc.bold(`App deployed at "${cmd.bucket}"`))
-
-      if (cmd.distributionId) {
-        await invalidate({
-          accessKeyId: cmd.accessKeyId,
-          secretAccessKey: cmd.secretAccessKey,
-          distributionId: cmd.distributionId
-        })
-        console.log(clc.bold(`Invalidation created`))
-      }
-    } catch (error) {
-      console.log('\n' + clc.bold.red(error.message) + '\n')
-      process.exit(1)
+      console.log(clc.bold(`Invalidation created`))
     }
+  } catch (error) {
+    console.log('\n' + clc.bold.red(error.message) + '\n')
+    console.log(error)
+    process.exit(1)
   }
-
-  safeDeploy()
 })
 
 program.parse(process.argv)

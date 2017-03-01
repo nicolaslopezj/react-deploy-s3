@@ -32,13 +32,21 @@ export default async ({ accessKeyId, secretAccessKey, bucket, region }) => {
     const size = filesize(stats.size)
     spinner.setSpinnerTitle(`%s   Uploading ${fileName} (${size})...`)
 
-    await s3.upload(s3, {
-      Bucket: bucket,
-      Key: fileName,
-      Body: stream,
-      ACL: 'public-read',
-      ContentType: contentType
-    }).promise()
+    await new Promise(function (resolve, reject) {
+      s3.upload({
+        Bucket: bucket,
+        Key: fileName,
+        Body: stream,
+        ACL: 'public-read',
+        ContentType: contentType
+      }, function (error, data) {
+        if (error) {
+          reject(error)
+        } else {
+          resolve(data)
+        }
+      })
+    })
   }
   spinner.stop(true)
 }
