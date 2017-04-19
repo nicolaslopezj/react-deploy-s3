@@ -20,7 +20,8 @@ const setup = async function () {
     'ap-southeast-1',
     'ap-southeast-2',
     'ap-south-1',
-    'sa-east-1'
+    'sa-east-1',
+    'cn-north-1',
   ]
 
   const credentials = await inquirer.prompt([
