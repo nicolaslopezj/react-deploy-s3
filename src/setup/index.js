@@ -5,7 +5,7 @@ import configBucket from './configBucket'
 import createCloudFrontDistribution from './createCloudFrontDistribution'
 import clc from 'cli-color'
 
-const setup = async function () {
+const setup = async function() {
   const regions = [
     'us-east-1',
     'us-east-2',
@@ -20,8 +20,7 @@ const setup = async function () {
     'ap-southeast-1',
     'ap-southeast-2',
     'ap-south-1',
-    'sa-east-1',
-    'cn-north-1',
+    'sa-east-1'
   ]
 
   const credentials = await inquirer.prompt([
@@ -73,7 +72,7 @@ const setup = async function () {
   console.log(`  --distribution-id ${distributionId}`)
 }
 
-export default async function () {
+export default async function() {
   try {
     console.log('\n' + clc.blue.underline('React deploy S3: Setup') + '\n')
     await setup()
