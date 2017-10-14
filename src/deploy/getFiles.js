@@ -1,9 +1,9 @@
 import fs from 'fs'
 
-const getFilesInDir = function (dir) {
+const getFilesInDir = function(dir) {
   var results = []
   var list = fs.readdirSync(dir)
-  list.forEach(function (file) {
+  list.forEach(function(file) {
     file = dir + '/' + file
     var stat = fs.statSync(file)
     if (stat && stat.isDirectory()) {
@@ -17,7 +17,7 @@ const getFilesInDir = function (dir) {
   return results
 }
 
-export default function () {
+export default function() {
   const files = getFilesInDir('build')
   return files
 }

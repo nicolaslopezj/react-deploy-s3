@@ -1,8 +1,8 @@
 import AWS from 'aws-sdk'
 import {Spinner} from 'cli-spinner'
 
-export default async function ({ accessKeyId, secretAccessKey, distributionId }) {
-  AWS.config.update({ accessKeyId, secretAccessKey })
+export default async function({accessKeyId, secretAccessKey, distributionId}) {
+  AWS.config.update({accessKeyId, secretAccessKey})
   const cloudfront = new AWS.CloudFront()
 
   let spinner = new Spinner('%s Creating invalidation')
@@ -16,9 +16,7 @@ export default async function ({ accessKeyId, secretAccessKey, distributionId })
       CallerReference: 'react-deploy-s3-' + timestamp,
       Paths: {
         Quantity: 1,
-        Items: [
-          '/index.html'
-        ]
+        Items: ['/index.html']
       }
     }
   }
