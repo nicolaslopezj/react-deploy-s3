@@ -1,6 +1,6 @@
 {
   "name": "react-deploy-s3",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Deploy create react app's in AWS S3",
   "main": "build/index.js",
   "preferGlobal": true,

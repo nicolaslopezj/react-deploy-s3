@@ -16,7 +16,7 @@ export default async function({accessKeyId, secretAccessKey, distributionId}) {
       CallerReference: 'react-deploy-s3-' + timestamp,
       Paths: {
         Quantity: 1,
-        Items: ['/index.html']
+        Items: ['/index.html', '/static/*']
       }
     }
   }
